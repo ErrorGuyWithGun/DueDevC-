@@ -24,7 +24,7 @@ public class MenuManager : MonoBehaviour
         }
     }
 
-    private void Start()
+    private void Awake() // before start for use "loading"
     {
         instance = this;
     }
