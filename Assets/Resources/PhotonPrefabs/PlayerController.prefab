@@ -53,7 +53,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _camera: {fileID: 8183637300102825737}
   _cameraSensitivity: 2
-  _movementSpeed: 4
+  _movementSpeed: 8
   _checkJumpRadius: 0.2
   _jumpForce: 5
 --- !u!54 &-4995632822944909919
@@ -280,7 +280,7 @@ Camera:
     width: 1
     height: 1
   near clip plane: 0.3
-  far clip plane: 1000
+  far clip plane: 100
   field of view: 60
   orthographic: 0
   orthographic size: 5
