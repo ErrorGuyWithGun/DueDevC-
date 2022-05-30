@@ -7,7 +7,7 @@ public class MazeGenerator
     public int Width = 50;
     public int Height = 50;
 
-    public Maze GenerateMaze()
+    public Maze GenerateMaze()                  //Генерация лабиринта
     {
         MazeGeneratorCell[,] cells = new MazeGeneratorCell[Width, Height];
 
@@ -89,7 +89,7 @@ public class MazeGenerator
         }
     }
 
-    private Vector2Int PlaceMazeExit(MazeGeneratorCell[,] maze)
+    private Vector2Int PlaceMazeExit(MazeGeneratorCell[,] maze)         //Генерация выходы
     {
         MazeGeneratorCell furthest = maze[0, 0];
 

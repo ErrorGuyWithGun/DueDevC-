@@ -22,17 +22,17 @@ public class PlayerController : MonoBehaviour
     {
         _rigidbody = GetComponent<Rigidbody>();
         _photonView = GetComponent<PhotonView>();
-        Cursor.visible = false;
-        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;                                     //Откл. курсор мыши
+        Cursor.lockState = CursorLockMode.Locked;                   // Пока курсор откл. он находится по центру
 
-        if (!_photonView.IsMine)
+        if (!_photonView.IsMine)    //Если не наш игрок
         {
-            Destroy(GetComponentInChildren<Camera>().gameObject);
-            Destroy(_rigidbody);
+            Destroy(GetComponentInChildren<Camera>().gameObject);   //То уничтожает камеру
+            Destroy(_rigidbody);                                    //И уничтожает риджитбоди чужого игрока
         }
     }
 
-    private void FixedUpdate()
+    private void FixedUpdate() //Проверка:принадлежит ли игрок нам
     {
         if(_photonView.IsMine)
             PlayerMovement();
@@ -40,7 +40,7 @@ public class PlayerController : MonoBehaviour
     
     private void Update()
     {
-        if(!_photonView.IsMine)
+        if(!_photonView.IsMine) //Если не наш игрок то ничего не делаем
             return;
         
         RotatePlayerRightLeft();
@@ -49,7 +49,7 @@ public class PlayerController : MonoBehaviour
             TryJump();
     }
     
-    private void TryJump()
+    private void TryJump()                  //Функция прыжка
     {
         Collider[] colliders = Physics.OverlapSphere(transform.position - Vector3.down * 0.5f, _checkJumpRadius);
         
@@ -63,10 +63,10 @@ public class PlayerController : MonoBehaviour
     }
     
 
-    private void PlayerMovement()
+    private void PlayerMovement()       //Хотьба
     {
-        float h = Input.GetAxis("Horizontal");
-        float v = Input.GetAxis("Vertical");
+        float h = Input.GetAxis("Horizontal");  //Отвечает за нажатие клавиш A и D
+        float v = Input.GetAxis("Vertical");    //Отвечает за нажатие клавиш W и S
 
         Vector3 movementDir = transform.forward * v + transform.right * h;
         movementDir = Vector3.ClampMagnitude(movementDir, 1f);
@@ -75,15 +75,15 @@ public class PlayerController : MonoBehaviour
             movementDir.z * _movementSpeed);
     }
 
-    private void RotatePlayerRightLeft()
+    private void RotatePlayerRightLeft()        //Поворачивает модельку и камеру в сторону направления движения мыши влево вправо
     {
-        transform.Rotate(Vector3.up, Input.GetAxisRaw("Mouse X") * _cameraSensitivity);
+        transform.Rotate(Vector3.up, Input.GetAxisRaw("Mouse X") * _cameraSensitivity);     
     }
 
-    private void RotateCameraUpDown()
+    private void RotateCameraUpDown()           //Поворачивает модельку и камеру в сторону направления движения мыши вверх вниз
     {
         _rotationX -= _cameraSensitivity * Input.GetAxisRaw("Mouse Y");
-        _rotationX = Mathf.Clamp(_rotationX, -75, 75);
+        _rotationX = Mathf.Clamp(_rotationX, -75, 75);                                                  //не даёт задать значение меньше -75 и больше 75
         _camera.eulerAngles = new Vector3(_rotationX, _camera.eulerAngles.y, _camera.eulerAngles.z);
     }
 }
