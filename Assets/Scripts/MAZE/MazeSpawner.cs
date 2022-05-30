@@ -1,16 +1,16 @@
 using UnityEngine;
 
 public class MazeSpawner : MonoBehaviour
-{
-    public Cell CellPrefab;
-    public Vector3 CellSize = new Vector3(1,1,0);
-    public HintRenderer HintRenderer;
+{  
+    public Cell CellPrefab;                         //заготовка клетки
+    public Vector3 CellSize = new Vector3(1,1,0);   //Размеры клетки
+    public HintRenderer HintRenderer;               //Линия что ведёт к выходу
 
     public Maze maze;
 
     private void Start()
     {
-        MazeGenerator generator = new MazeGenerator();
+        MazeGenerator generator = new MazeGenerator();  //Генерация лабиринта
         maze = generator.GenerateMaze();
 
         for (int x = 0; x < maze.cells.GetLength(0); x++)
@@ -24,6 +24,6 @@ public class MazeSpawner : MonoBehaviour
             }
         }
 
-        HintRenderer.DrawPath();
+        HintRenderer.DrawPath();        // Рисование линии к выходу
     }
 }

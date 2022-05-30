@@ -12,7 +12,7 @@ public class HintRenderer : MonoBehaviour
         componentLineRenderer = GetComponent<LineRenderer>();
     }
 
-    public void DrawPath()
+    public void DrawPath()                      //Рисования линии к выходу
     {
         Maze maze = MazeSpawner.maze;
         int x = maze.finishPosition.x;
